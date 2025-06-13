@@ -81,8 +81,7 @@
       b
     else if a then
       b
-    # x
-    else if a then
+    else /* x */ if a then
       b
     else
       c

@@ -84,6 +84,7 @@ instance Pretty TrailingComment where
 instance Pretty Trivium where
   pretty EmptyLine = emptyline
   pretty (LineComment c) = comment ("#" <> c) <> hardline
+  pretty (BlockComment False [l]) = hardspace <> comment ("/* " <> l <> " */") <> hardspace
   pretty (BlockComment isDoc c) =
     comment (if isDoc then "/**" else "/*")
       <> hardline
@@ -107,6 +108,7 @@ prettyItems (Items items) = sepBy hardline items
 
 instance Pretty [Trivium] where
   pretty [] = mempty
+  pretty [t@(BlockComment False [_])] = pretty t
   pretty trivia = hardline <> hcat trivia
 
 instance (Pretty a) => Pretty (Ann a) where

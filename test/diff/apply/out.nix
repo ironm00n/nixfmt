@@ -70,23 +70,10 @@
       mapAttrsToStringsSep "\n" mkSection attrsOfAttrs;
   }
   [
-    (mapAttrsToStringsSep [
-      force # meow
-      long
-    ] "\n" mkSection attrsOfAttrs)
+    (mapAttrsToStringsSep [ force /* meow */ long ] "\n" mkSection attrsOfAttrs)
   ]
   (a b)
-  ((a b) (a b)
-    (
-      # b
-      a c
-    )
-    (
-      # a
-      # c
-      b d # e
-    )
-  )
+  ((a b) (a b) (a /* b */ c) ( /* a */ b /* c */ d /* e */ ))
   ''
     otherModules=${
       pkgs.writeText "other-modules.json" (
@@ -341,10 +328,10 @@
     );
     # Add a comment at a bad place
     foo4 = (
-      # comment
-      (callPackage ../generic-builders/manifest.nix {
+      ( /* comment */ callPackage ../generic-builders/manifest.nix {
         # A lot of values here
-      }).overrideAttrs
+      }
+      ).overrideAttrs
         stuff
         (prevAttrs: {
           # stuff here

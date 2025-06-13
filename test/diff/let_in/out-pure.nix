@@ -16,42 +16,46 @@ let
     let
       c = 1;
     in
-    # e
-    f;
+    /* e */ f;
   a =
     let
-      c = 1; # d
+      c = 1;
+      /* d */
     in
     f;
 
   a =
     let
-      c = 1; # d
+      c = 1;
+      /* d */
     in
-    # e
-    f;
+    /* e */ f;
   a =
-    let # b
+    let
+      /* b */
       c = 1;
     in
     f;
   a =
-    let # b
+    let
+      /* b */
       c = 1;
     in
-    # e
-    f;
+    /* e */ f;
   a =
-    let # b
-      c = 1; # d
+    let
+      /* b */
+      c = 1;
+      /* d */
     in
     f;
   a =
-    let # b
-      c = 1; # d
+    let
+      /* b */
+      c = 1;
+      /* d */
     in
-    # e
-    f;
+    /* e */ f;
 
   a =
     let
