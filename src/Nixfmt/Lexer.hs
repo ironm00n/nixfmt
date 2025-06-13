@@ -146,7 +146,6 @@ convertLeading =
         PTNewlines _ -> [EmptyLine]
         PTLineComment c _ -> [LineComment c]
         PTBlockComment _ [] -> []
-        PTBlockComment False [c] -> [LineComment $ " " <> strip c]
         PTBlockComment isDoc cs -> [BlockComment isDoc cs]
     )
 
