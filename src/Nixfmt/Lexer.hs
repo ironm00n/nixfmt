@@ -186,8 +186,6 @@ convertLeading =
 
 isTrailing :: ParseTrivium -> Bool
 isTrailing (PTLineComment _ _) = True
-isTrailing (PTBlockComment False []) = True
-isTrailing (PTBlockComment False [_]) = True
 isTrailing _ = False
 
 convertTrivia :: [ParseTrivium] -> Pos -> (Maybe TrailingComment, Trivia)

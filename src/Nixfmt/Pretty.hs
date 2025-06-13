@@ -92,6 +92,7 @@ instance Pretty Trivium where
   pretty EmptyLine = emptyline
   pretty (LineComment c) = comment ("#" <> c) <> hardline
   pretty (LanguageAnnotation lang) = comment ("/* " <> lang <> " */") <> hardspace
+  pretty (BlockComment False [l]) = hardspace <> comment ("/* " <> l <> " */") <> hardspace
   pretty (BlockComment isDoc c) =
     comment (if isDoc then "/**" else "/*")
       <> hardline
@@ -126,6 +127,7 @@ prettyItems (Items items) = go items
 
 instance Pretty Trivia where
   pretty [] = mempty
+  pretty [t@(BlockComment False [_])] = pretty t
   -- Special case: if trivia consists only of a single language annotation, render it inline without a preceding hardline
   pretty [langAnnotation@(LanguageAnnotation _)] = pretty langAnnotation
   pretty trivia = hardline <> foldMap pretty trivia

@@ -32,8 +32,8 @@
   ";
 
   # Multiple block comments in sequence
-  sequentialComments = # first
-    /* second */ ''
+  sequentialComments =
+    /* first */ /* second */ ''
       some content
     '';
 
@@ -48,7 +48,8 @@
     '';
 
   # Mixed comment styles
-  mixedComments = # inline line comment
+  mixedComments =
+    /* inline */ # line comment
     ''
       content
     '';
@@ -101,23 +102,20 @@
   '';
 
   # Edge case: very long language annotation
-  longAnnotation = # this-is-a-very-long-language-annotation-that-might-affect-line-length
-    ''
-      content
-    '';
+  longAnnotation = /* this-is-a-very-long-language-annotation-that-might-affect-line-length */ ''
+    content
+  '';
 
   # Language annotation not followed by string
-  object = # json
-    {
-      key = "value";
-    };
-  fn = # foo
-    x: x + 1;
-  fnCall = # foo
-    fnName "bar";
+  object = /* json */ {
+    key = "value";
+  };
+  fn =  /* foo */ x: x + 1;
+  fnCall = /* foo */ fnName "bar";
 
   # Language annotation followed by line break
-  lineBreak = # python
+  lineBreak =
+    /* python */
 
     ''
       print("Line break after annotation")

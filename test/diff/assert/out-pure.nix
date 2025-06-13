@@ -4,40 +4,32 @@
     e
   )
   (
-    assert b; # d
-    e
-  )
-  (
-    assert b # c
-    ;
-    e
-  )
-  (
-    assert b # c
-    ; # d
-    e
-  )
-  (
-    # a
     assert b;
+    /* d */ e
+  )
+  (
+    assert b /* c */ ;
     e
   )
   (
-    # a
-    assert b; # d
+    assert b /* c */ ;
+    /* d */ e
+  )
+  (
+    assert /* a */ b;
     e
   )
   (
-    # a
-    assert b # c
-    ;
+    assert /* a */ b;
+    /* d */ e
+  )
+  (
+    assert /* a */ b /* c */ ;
     e
   )
   (
-    # a
-    assert b # c
-    ; # d
-    e
+    assert /* a */ b /* c */ ;
+    /* d */ e
   )
   (
     assert b;
@@ -58,11 +50,7 @@
         + (lib.optionalString (gitRelease != null) " — not both")
       );
     assert if true then 1 else 0;
-    assert
-      if true then # multiline
-        1
-      else
-        0;
+    assert if true then /* multiline */ 1 else 0;
     assert
       with lib.strings;
       (versionAtLeast stdenv.cc.version "7.1" && versionOlder stdenv.cc.version "13");
